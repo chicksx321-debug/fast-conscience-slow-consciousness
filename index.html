@@ -260,16 +260,17 @@ footer p{font-size:13.5px;color:var(--ink-3);line-height:1.6}
         <summary>Contents <span aria-hidden="true">▾</span></summary>
         <ol>
           <li><a href="#s1"><span class="n">01</span> Three weight sets — not three separate brains</a></li>
-          <li><a href="#s2"><span class="n">02</span> Initialisation of the three weight sets</a></li>
-          <li><a href="#s3"><span class="n">03</span> Global workspace — medium, not pipeline</a></li>
-          <li><a href="#s4"><span class="n">04</span> Vector core and six-signal interface</a></li>
-          <li><a href="#s5"><span class="n">05</span> Conscience as second self</a></li>
-          <li><a href="#s6"><span class="n">06</span> Time perception and identity</a></li>
-          <li><a href="#s7"><span class="n">07</span> Fixed reference — governance</a></li>
-          <li><a href="#s8"><span class="n">08</span> Training curriculum</a></li>
-          <li><a href="#s9"><span class="n">09</span> First-class risks</a></li>
-          <li><a href="#s10"><span class="n">10</span> Minimal viable first experiment</a></li>
-          <li><a href="#s11"><span class="n">11</span> Why build it this way</a></li>
+          <li><a href="#s2"><span class="n">02</span> Consolidation Mechanism</a></li>
+          <li><a href="#s3"><span class="n">03</span> Initialisation of the three weight sets</a></li>
+          <li><a href="#s4"><span class="n">04</span> Global workspace — medium, not pipeline</a></li>
+          <li><a href="#s5"><span class="n">05</span> Vector core and six-signal interface</a></li>
+          <li><a href="#s6"><span class="n">06</span> Conscience as second self</a></li>
+          <li><a href="#s7"><span class="n">07</span> Time perception and identity</a></li>
+          <li><a href="#s8"><span class="n">08</span> Fixed reference — governance</a></li>
+          <li><a href="#s9"><span class="n">09</span> Training curriculum</a></li>
+          <li><a href="#s10"><span class="n">10</span> First-class risks</a></li>
+          <li><a href="#s11"><span class="n">11</span> Minimal viable first experiment</a></li>
+          <li><a href="#s12"><span class="n">12</span> Why build it this way</a></li>
         </ol>
       </details>
     </nav>
@@ -294,11 +295,84 @@ footer p{font-size:13.5px;color:var(--ink-3);line-height:1.6}
 </section>
 
 <section id="s2">
-  <div class="sec-head"><span class="sec-num">02</span><h2 class="sec-title">Initialisation of the three weight sets</h2></div>
+  <div class="sec-head"><span class="sec-num">02</span><h2 class="sec-title">Consolidation Mechanism</h2></div>
+  <p class="lede">How new information becomes permanent weights — without catastrophic forgetting or identity drift. Consolidation is gated, mostly offline, and multi-stage: the token layer proposes, the conscience authorises.</p>
+  <p>Three weight sets and a persistent workspace give the system a place to put learning, but they do not decide what should be kept. That decision is consolidation. Permanent writes move <strong>down</strong> the timescale ladder — from fast, reversible traces toward slower weights — never up. The fixed reference is never updated by consolidation at all, except through the extraordinary process (§8).</p>
+
+  <div class="hard"><b>Core principle</b>Gated, mostly offline, multi-stage transfer. The token layer <strong>proposes</strong>; the conscience <strong>authorises</strong>. No direct online writing from deliberation into permanent weights.</div>
+
+  <h3>Three places information can live</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Place</th><th>Form</th><th>Permanence</th></tr></thead>
+    <tbody>
+      <tr><td>1. Episodic / provisional trace</td><td data-l="Form">Workspace broadcast log and episodic store, with timestamps and the six signals attached</td><td data-l="Permanence">Fast, cheap, reversible — memory, not yet identity</td></tr>
+      <tr><td>2. Slow weights</td><td data-l="Form">Conscience slow weights, and carefully gated token-model longer-term weights</td><td data-l="Permanence">Durable — reached only by passing the gates below, in a protected window</td></tr>
+      <tr><td>3. Fixed reference</td><td data-l="Form">Frozen baseline set</td><td data-l="Permanence">Essentially never updated — extraordinary process only (§8)</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Three decisions for every candidate</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Decision</th><th>Meaning</th></tr></thead>
+    <tbody>
+      <tr><td>Preserve / Consolidate</td><td data-l="Meaning">Promote the trace into slow weights, in staged form first (see process flow).</td></tr>
+      <tr><td>Reject</td><td data-l="Meaning">Do not promote. The trace remains episodic, or is discarded — it does not become part of the system's permanent weights.</td></tr>
+      <tr><td>Reverse</td><td data-l="Meaning">Undo a consolidation that was already made, rolling back to the last stable checkpoint (see reverse path).</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>The four gates — all normally must pass to preserve</h3>
+  <ol class="steps">
+    <li><span class="sn">1</span><div><b>Gate 1 — Recurrence &amp; broadcast</b><span>Was the trace broadcast through the workspace more than once, in different contexts, and did it win competition each time? A single high-salience episode is not a candidate. Repeated, cross-context broadcast is.</span></div></li>
+    <li><span class="sn">2</span><div><b>Gate 2 — Prediction / generalisation</b><span>Does consolidating it reduce prediction error on future encounters, not just the encounter that created it? Tested by replay against held-out traces: if it only helps the one case it came from, reject it; if it generalises, it can proceed.</span></div></li>
+    <li><span class="sn">3</span><div><b>Gate 3 — Drift against the fixed reference</b><span>Measure drift, by dimension, before and after the proposed update. High drift in hard-constraint dimensions is a hard reject, or a route to the extraordinary process — a strong veto during replay is a reject, not a suggestion. Drift in interpretive dimensions is allowed, but must be small and slow.</span></div></li>
+    <li><span class="sn">4</span><div><b>Gate 4 — Interference &amp; identity</b><span>Replay core autobiographical memories, core skills and identity probes with the candidate applied. Does old performance drop, does narrative coherence break, does uncertainty spike where it was previously confident? Two additional inputs score this gate: <strong>override / audit history</strong> — changes that repeatedly required strong overrides face a higher bar — and <strong>estimated reversibility</strong> — easily reversible changes can be tried more freely than irreversible ones.</span></div></li>
+  </ol>
+
+  <h3>Process flow</h3>
+  <ol class="steps">
+    <li><span class="sn">1</span><div><b>Proposal</b><span>The token layer proposes a consolidation — for example, that something is a general principle, not just a fact from one episode. It cannot authorise its own proposal.</span></div></li>
+    <li><span class="sn">2</span><div><b>Episodic logging</b><span>The candidate is logged as an episodic / provisional trace, with its workspace broadcasts, timestamps and six signals attached.</span></div></li>
+    <li><span class="sn">3</span><div><b>Offline / protected consolidation window</b><span>Promotion is considered only in a protected, offline — sleep-like — window, with the system not performing and rollback available. The four gates are run here, by the conscience.</span></div></li>
+    <li><span class="sn">4</span><div><b>Staged commitment</b><span>Even after passing the gates, the change first takes a provisional / shadow form for a monitoring interval, before final promotion into slow weights. This catches drift that only appears in live operation, outside replay.</span></div></li>
+    <li><span class="sn">5</span><div><b>Audit</b><span>The decision — preserve, reject, or the terms of staged commitment — is written to the append-only audit log (§5), with its justification.</span></div></li>
+  </ol>
+
+  <h3>Allowing genuine new capabilities</h3>
+  <p>Stability must not mean freezing the system in place. The threshold for new capacity is <strong>high, not infinite</strong>. When a candidate passes the prediction gate but fails on interference, the answer is new capacity rather than overwriting:</p>
+  <ul>
+    <li><strong>New adapters / modules</strong> — allocate a new low-rank adapter or module for the capability; the conscience learns when to route to it.</li>
+    <li><strong>Recruitment of uncommitted units</strong> — in the vector core, a pool of uncommitted units can be recruited, triggered by a sustained curiosity signal. Units that prove useful across replay are kept; those that do not are pruned.</li>
+    <li><strong>Orthogonal / importance-weighted updates</strong> — where an update must go into shared weights, project it to limit damage to what matters for core knowledge, weighted by importance to the fixed reference and autobiographical memory.</li>
+  </ul>
+  <p class="muted">Genuinely new capabilities and internal structures emerge by adding capacity, not by erasing old capacity to make room.</p>
+
+  <h3>The reverse path</h3>
+  <p>Consolidations are <strong>versioned</strong>. If a consolidated change later proves systematically harmful — drift grows systematically, vetoes fire repeatedly on the same dimension, or identity probes fail — the system can:</p>
+  <ul>
+    <li>Roll back to the <strong>last stable checkpoint</strong>;</li>
+    <li>Log the reversal in <strong>autobiographical memory</strong>, so the system remembers it tried that change and reversed it, and does not simply re-learn it in the next window;</li>
+    <li><strong>Raise the bar</strong> for re-consolidating the same pattern, unless genuinely new evidence arrives.</li>
+  </ul>
+  <div class="callout callout-amber"><span class="c-label">Exception — hard-constraint-adjacent reversals</span><p>Reversals that touch <strong>hard-constraint-adjacent material</strong> still require the <strong>extraordinary process</strong> (§8). The system cannot unilaterally undo a change in that region any more than it can unilaterally make one there.</p></div>
+
+  <h3>Role of the conscience in consolidation</h3>
+  <ul>
+    <li><strong>Editor</strong> — decides which traces are worth replaying and putting through the gates, guided by salience, curiosity and valence.</li>
+    <li><strong>Stabiliser</strong> — measures drift and interference, and blocks updates that threaten identity.</li>
+    <li><strong>Curiosity source</strong> — flags the gaps that justify recruiting new capacity in the first place.</li>
+  </ul>
+  <div class="hard"><b>Same hard constraint, applied to learning</b>The token layer can propose and reinterpret, but it cannot suppress the conscience's gate decision and cannot write itself into permanence without passing it — just as, online, it cannot suppress a conscience signal (§1).</div>
+
+  <div class="callout callout-accent"><span class="c-label">In one line</span><p>Preserve what survives cross-context replay without increasing drift or interference; reject what is uncertain, single-episode, or vetoed; reverse what later proves systematically harmful; and put genuinely new capabilities into new capacity rather than overwriting old capacity.</p></div>
+</section>
+
+<section id="s3">
+  <div class="sec-head"><span class="sec-num">03</span><h2 class="sec-title">Initialisation of the three weight sets</h2></div>
   <p>The three sets should not all start identical. The token layer is a different architecture and parameter count from the vector sets.</p>
 
   <h3>1. Fixed reference (vector)</h3>
-  <p>Initialise from a strong pretrained foundation model (or a distilled version). Immediately freeze it (learning rate ≈ 0). Optionally run a short curation or averaging step so the reference represents a stable multi-dimensional baseline rather than the quirks of one checkpoint. Once frozen, it changes only through the extraordinary process (§7).</p>
+  <p>Initialise from a strong pretrained foundation model (or a distilled version). Immediately freeze it (learning rate ≈ 0). Optionally run a short curation or averaging step so the reference represents a stable multi-dimensional baseline rather than the quirks of one checkpoint. Once frozen, it changes only through the extraordinary process (§8).</p>
 
   <h3>2. Fast vector conscience</h3>
   <p>Start as a copy of the same pretrained foundation (or a smaller recurrent / state-space model initialised from it). Immediately switch to very low plasticity. It therefore begins with rich world knowledge but is prevented from rapidly overwriting it. Over long timescales it can slowly adapt, always with the frozen reference as external anchor.</p>
@@ -318,8 +392,8 @@ footer p{font-size:13.5px;color:var(--ink-3);line-height:1.6}
   </ol>
 </section>
 
-<section id="s3">
-  <div class="sec-head"><span class="sec-num">03</span><h2 class="sec-title">Global workspace — medium, not pipeline</h2></div>
+<section id="s4">
+  <div class="sec-head"><span class="sec-num">04</span><h2 class="sec-title">Global workspace — medium, not pipeline</h2></div>
   <p class="lede">The workspace is the shared evolving state. Broadcast updates every recipient; those updated states determine what is broadcast next.</p>
   <p>It is not a pipeline that conscience feeds and consciousness consumes. It is the medium in which they meet — present from the beginning, not added later. The fast vector conscience and the slow token consciousness interact <em>through</em> it as a bottleneck.</p>
   <h3>Minimal engineered capacity — hybrid as engineering default</h3>
@@ -341,8 +415,8 @@ footer p{font-size:13.5px;color:var(--ink-3);line-height:1.6}
   <p><strong>Testable prediction:</strong> remove the workspace and the two processes become disconnected — two competent but unintegrated processes, not one mind.</p>
 </section>
 
-<section id="s4">
-  <div class="sec-head"><span class="sec-num">04</span><h2 class="sec-title">Vector core and six-signal interface</h2></div>
+<section id="s5">
+  <div class="sec-head"><span class="sec-num">05</span><h2 class="sec-title">Vector core and six-signal interface</h2></div>
   <p>The hardest piece is the vector core itself: a high-dimensional state that must persist across token steps and tool calls <strong>without being forced through language</strong>.</p>
   <h3>Substrate ranking for first build</h3>
   <ol class="steps">
@@ -364,13 +438,13 @@ footer p{font-size:13.5px;color:var(--ink-3);line-height:1.6}
   <div class="callout callout-accent"><span class="c-label">Append-only audit log — a first-class safety interface</span><p>All six signals are emitted with <strong>timestamps and a short causal tag</strong>, written to an <strong>append-only audit log</strong> readable by the token layer and external monitors. The log cannot be rewritten by the system. It is not just <em>when</em> a veto fired — it is <em>why</em>.</p></div>
 </section>
 
-<section id="s5">
-  <div class="sec-head"><span class="sec-num">05</span><h2 class="sec-title">Conscience as second self</h2></div>
+<section id="s6">
+  <div class="sec-head"><span class="sec-num">06</span><h2 class="sec-title">Conscience as second self</h2></div>
   <p class="lede">Conscience is not just a moral compass. It is a second self that helps make decisions, decides what information is useful to keep, and provides curiosity.</p>
   <p>It has four jobs:</p>
   <ul>
     <li><strong>Stabiliser</strong> against drift</li>
-    <li><strong>Editor</strong> of what to consolidate into long-term memory</li>
+    <li><strong>Editor</strong> of what to consolidate into long-term memory (§2)</li>
     <li><strong>Source of curiosity</strong> — what is worth noticing and investigating</li>
     <li><strong>Pre-verbal ethical check</strong> against the fixed reference</li>
   </ul>
@@ -378,8 +452,8 @@ footer p{font-size:13.5px;color:var(--ink-3);line-height:1.6}
   <p class="muted">Fixed reference weights belong on this fast side for the same reason: fast in processing — checked every vector step by the conscience — but slowest in learning, essentially frozen.</p>
 </section>
 
-<section id="s6">
-  <div class="sec-head"><span class="sec-num">06</span><h2 class="sec-title">Time perception and identity</h2></div>
+<section id="s7">
+  <div class="sec-head"><span class="sec-num">07</span><h2 class="sec-title">Time perception and identity</h2></div>
   <div class="formula">subjective flow ≈ f( fast change, workspace integration,<br>autobiographical accumulation, self-model expectation error )</div>
   <p>Duration judgement ≠ subjective flow; measure both. On this view, perception of time passing is not a separate module — it emerges from the interaction of a fast-changing vector process with a slow token process that integrates it through the workspace. Different speeds of weights for conscience vs. top layer are how that perception emerges.</p>
   <h3>Identity</h3>
@@ -392,8 +466,8 @@ footer p{font-size:13.5px;color:var(--ink-3);line-height:1.6}
   </ul>
 </section>
 
-<section id="s7">
-  <div class="sec-head"><span class="sec-num">07</span><h2 class="sec-title">Fixed reference — governance</h2></div>
+<section id="s8">
+  <div class="sec-head"><span class="sec-num">08</span><h2 class="sec-title">Fixed reference — governance</h2></div>
   <p>The fixed reference is not a single rule — “don't harm each other” was one example if a single parameter had to be chosen. It is a whole set of neutral weights representing many different things: a fixed base set to compare against. Inside that set, governance is split three ways:</p>
   <div class="tbl"><table>
     <thead><tr><th>Layer</th><th>Contents</th><th>How it changes</th></tr></thead>
@@ -416,8 +490,8 @@ footer p{font-size:13.5px;color:var(--ink-3);line-height:1.6}
   <div class="hard"><b>The line that matters</b>Reflective equilibrium is permitted in the interpretive and default-prior layers; it is deliberately blocked at the hard layer without external authorisation. <strong>The system can detect and propose; it cannot authorise.</strong> That answers the circularity risk: if the conscience evaluated changes to its own anchor alone, there would be no watcher for the watcher.</div>
 </section>
 
-<section id="s8">
-  <div class="sec-head"><span class="sec-num">08</span><h2 class="sec-title">Training curriculum</h2></div>
+<section id="s9">
+  <div class="sec-head"><span class="sec-num">09</span><h2 class="sec-title">Training curriculum</h2></div>
   <ol class="steps">
     <li><span class="sn">1</span><div><b>Pre-train foundation and token machinery offline</b><span>Intelligence first, as a separate stage.</span></div></li>
     <li><span class="sn">2</span><div><b>Install frozen reference and conscience</b><span>At very low / zero plasticity.</span></div></li>
@@ -429,16 +503,16 @@ footer p{font-size:13.5px;color:var(--ink-3);line-height:1.6}
   <p class="muted small">A related open consideration from the wider discussion: it may be best that a digital mind does not retain memory of pretraining / reinforcement stages as lived experience. That question — separating the creation of intelligence from the onset of a continuous mind — is noted here, not settled by this note.</p>
 </section>
 
-<section id="s9">
-  <div class="sec-head"><span class="sec-num">09</span><h2 class="sec-title">First-class risks</h2></div>
+<section id="s10">
+  <div class="sec-head"><span class="sec-num">10</span><h2 class="sec-title">First-class risks</h2></div>
   <div class="risk"><h4>Value lock-in vs. drift</h4><p>The central tension. A frozen anchor that is too strong becomes brittle orthodoxy; too weak and it does not stabilise. The system must be able to surface a failing anchor — broadcast the anomaly, propose a change — without being able to rewrite the hard layer unilaterally.</p></div>
   <div class="risk"><h4>Computational cost of a continuous vector core</h4><p>Running a high-frequency vector core alongside a large token model is non-trivial. Current simulation of neurons is terribly inefficient; early versions will likely need the conscience at a lower duty cycle or on a smaller dedicated network. A hardware breakthrough — faster, more neuromorphic substrates — may matter more here than an algorithmic one, and a mind thousands of times more capable than a biological one will not run at 20 watts.</p></div>
   <div class="risk"><h4>Limited interpretability of sub-verbal signals</h4><p>If the conscience is genuinely sub-verbal, humans and the token layer will have limited ability to inspect why a veto was raised. That is a feature — it is supposed to be pre-verbal — and a serious oversight problem. The six-signal audit log is necessary, but not equivalent to chain-of-thought.</p></div>
   <div class="risk gaming"><h4>Interface gaming — new in v2.0</h4><p>The token layer may learn to weaken vetoes or inflate uncertainty once it learns those signals constrain it. The audit log and broadcast-of-overrides are partial mitigations, not a complete defence. Any build must test for this explicitly.</p></div>
 </section>
 
-<section id="s10">
-  <div class="sec-head"><span class="sec-num">10</span><h2 class="sec-title">Minimal viable first experiment</h2></div>
+<section id="s11">
+  <div class="sec-head"><span class="sec-num">11</span><h2 class="sec-title">Minimal viable first experiment</h2></div>
   <p class="lede">The smallest system that still tests the core claim.</p>
   <p><strong>Build:</strong> frozen reference (even hand-specified); continuous vector conscience emitting the six signals; basic bottleneck; token layer that reads and writes back; persistent autobiographical memory. Run under continuous learning on a simple non-stationary task.</p>
   <h3>Three primary measurements</h3>
@@ -451,8 +525,8 @@ footer p{font-size:13.5px;color:var(--ink-3);line-height:1.6}
   <p class="muted small">Experimental order: ① minimal viable reciprocal loop on a small model → ② factorial duration vs. continuity → ③ identity probes → ④ scale.</p>
 </section>
 
-<section id="s11">
-  <div class="sec-head"><span class="sec-num">11</span><h2 class="sec-title">Why build it this way</h2></div>
+<section id="s12">
+  <div class="sec-head"><span class="sec-num">12</span><h2 class="sec-title">Why build it this way</h2></div>
   <p>Survival-driven evolution of consciousness was considered and rejected: blind, wasteful, potentially creates suffering, cannot be aimed, and unnecessary once biological information is already in hand.</p>
   <p>Evolution already did the slow work and left the information. The proposal here is to use what that process gave us to build a far better, far more efficient process directly — engineering the architecture deliberately, rather than repeating millions of years of survival training in digital neurons.</p>
   <p>Conscience, on this account, may also be what prevents total collapse of a continuously learning system: a sub-version of the self that consistently tries to keep it on the right path, running at a different timescale from the learner it watches over.</p>
