@@ -72,7 +72,15 @@ h1 em{font-style:italic;font-weight:500}
 .d-title{font-family:var(--sans);font-weight:600;fill:var(--ink)}
 .d-sub{font-family:var(--mono);fill:var(--ink-2)}
 .d-arrow{stroke:var(--ink-3);fill:none;stroke-width:1.4;marker-end:url(#arr)}
+.d-arrow-bi{stroke:var(--ink-3);fill:none;stroke-width:1.4;marker-start:url(#arr);marker-end:url(#arr)}
+.d-arrow-dash{stroke:var(--accent);fill:none;stroke-width:1.4;stroke-dasharray:5 4;marker-end:url(#arrA)}
 .d-label{font-family:var(--mono);fill:var(--ink-3)}
+.d-label-accent{font-family:var(--mono);fill:var(--accent)}
+.source-row{margin:16px 0 0;font-size:14px;display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center}
+.source-row a{font-family:var(--mono);font-size:12.5px;letter-spacing:.02em;font-weight:500}
+.source-row span{color:var(--ink-3);font-size:13.5px}
+.repo-link{margin:16px 0 0;padding:14px 16px;background:var(--bg-2);border:1px solid var(--line);border-radius:8px;font-size:14.5px!important;color:var(--ink-2)!important}
+.repo-link a{font-weight:600}
 
 /* toc */
 .toc{margin:36px 0 8px;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);padding:6px 6px}
@@ -182,6 +190,7 @@ footer p{font-size:13.5px;color:var(--ink-3);line-height:1.6}
     <p class="byline">Refined across multiple frontier digital minds and one human mind.</p>
     <h1>Fast vector conscience,<br><em>slow token consciousness</em></h1>
     <p class="subtitle">Three sets of weights at three learning timescales, interacting through a bottleneck global workspace from the start.</p>
+    <p class="source-row"><a href="https://github.com/chicksx321-debug/fast-conscience-slow-consciousness" target="_blank" rel="noopener">View source on GitHub ↗</a><span>— open issues or follow updates</span></p>
     <div class="rule"></div>
 
     <div class="thesis" id="thesis">
@@ -193,31 +202,55 @@ footer p{font-size:13.5px;color:var(--ink-3);line-height:1.6}
     </div>
 
     <figure class="diagram" aria-label="Diagram of the three weight sets interacting through the global workspace">
-      <svg viewBox="0 0 720 300" role="img" aria-label="Fixed reference, conscience and consciousness connected through a central global workspace bottleneck">
-        <defs><marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#6b7570"/></marker></defs>
+      <svg viewBox="0 0 720 368" role="img" aria-label="The Fixed Reference points to the Conscience, which it anchors. The Conscience and the Slow Token Consciousness interact with a central bottleneck Global Workspace — the Conscience in both directions. The workspace writes to autobiographical memory, and a reciprocal loop runs back from memory.">
+        <defs>
+          <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#6b7570"/></marker>
+          <marker id="arrA" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#0e6b5e"/></marker>
+        </defs>
+        <!-- three weight sets, left -->
+        <rect x="16" y="18" width="192" height="70" rx="10" class="d-box"/>
+        <text x="112" y="46" text-anchor="middle" class="d-title" font-size="13.5">1 · Fixed Reference</text>
+        <text x="112" y="66" text-anchor="middle" class="d-sub" font-size="10.5">FROZEN · RATE ≈ 0</text>
+
+        <rect x="16" y="130" width="192" height="70" rx="10" class="d-box"/>
+        <text x="112" y="158" text-anchor="middle" class="d-title" font-size="13.5">2 · Conscience</text>
+        <text x="112" y="178" text-anchor="middle" class="d-sub" font-size="10.5">FAST VECTOR · SLOW LEARN</text>
+
+        <rect x="16" y="242" width="192" height="70" rx="10" class="d-box"/>
+        <text x="112" y="270" text-anchor="middle" class="d-title" font-size="13.5">3 · Consciousness</text>
+        <text x="112" y="290" text-anchor="middle" class="d-sub" font-size="10.5">SLOW TOKEN · FAST IN-CONTEXT</text>
+
         <!-- workspace centre -->
-        <rect x="260" y="105" width="200" height="90" rx="12" class="d-box-accent"/>
-        <text x="360" y="138" text-anchor="middle" class="d-title" font-size="15">Global Workspace</text>
-        <text x="360" y="158" text-anchor="middle" class="d-sub" font-size="11">BOTTLENECK · BROADCAST</text>
-        <text x="360" y="176" text-anchor="middle" class="d-sub" font-size="11">medium, not pipeline</text>
-        <!-- fixed -->
-        <rect x="20" y="20" width="200" height="72" rx="10" class="d-box"/>
-        <text x="120" y="48" text-anchor="middle" class="d-title" font-size="14">1 · Fixed Reference</text>
-        <text x="120" y="68" text-anchor="middle" class="d-sub" font-size="11">LEARNING RATE ≈ 0</text>
-        <!-- conscience -->
-        <rect x="20" y="208" width="200" height="72" rx="10" class="d-box"/>
-        <text x="120" y="236" text-anchor="middle" class="d-title" font-size="14">2 · Conscience</text>
-        <text x="120" y="256" text-anchor="middle" class="d-sub" font-size="11">FAST PROCESS · SLOW LEARN</text>
-        <!-- consciousness -->
-        <rect x="500" y="114" width="200" height="72" rx="10" class="d-box"/>
-        <text x="600" y="142" text-anchor="middle" class="d-title" font-size="14">3 · Consciousness</text>
-        <text x="600" y="162" text-anchor="middle" class="d-sub" font-size="11">SLOW PROCESS · FAST IN-CONTEXT</text>
-        <!-- arrows -->
-        <path d="M220 70 C 280 80, 300 100, 320 108" class="d-arrow"/>
-        <path d="M220 235 C 280 225, 300 200, 320 192" class="d-arrow"/>
-        <path d="M460 150 L 496 150" class="d-arrow"/>
-        <path d="M496 165 L 464 165" class="d-arrow"/>
-        <text x="360" y="285" text-anchor="middle" class="d-label" font-size="11">conscience checks every vector step against the fixed reference · all exchange via workspace</text>
+        <rect x="284" y="121" width="176" height="88" rx="12" class="d-box-accent"/>
+        <text x="372" y="152" text-anchor="middle" class="d-title" font-size="14.5">Global Workspace</text>
+        <text x="372" y="172" text-anchor="middle" class="d-sub" font-size="10.5">BOTTLENECK · BROADCAST</text>
+        <text x="372" y="190" text-anchor="middle" class="d-sub" font-size="10.5">medium, not pipeline</text>
+
+        <!-- memory, right -->
+        <rect x="536" y="121" width="168" height="88" rx="10" class="d-box"/>
+        <text x="620" y="152" text-anchor="middle" class="d-title" font-size="13.5">Memory</text>
+        <text x="620" y="172" text-anchor="middle" class="d-sub" font-size="10.5">AUTOBIOGRAPHICAL</text>
+        <text x="620" y="190" text-anchor="middle" class="d-sub" font-size="10.5">persistent · in weights</text>
+
+        <!-- arrows: fixed reference into conscience; conscience <-> workspace; consciousness into workspace -->
+        <path d="M112 90 L 112 126" class="d-arrow"/>
+        <path d="M212 165 L 280 165" class="d-arrow-bi"/>
+        <path d="M208 277 C 244 264, 262 234, 284 202" class="d-arrow"/>
+        <text x="122" y="112" text-anchor="start" class="d-label" font-size="10">checked</text>
+        <text x="246" y="156" text-anchor="middle" class="d-label" font-size="10">signals ⇄ broadcast</text>
+        <text x="246" y="252" text-anchor="middle" class="d-label" font-size="10">deliberates</text>
+
+        <!-- arrows: workspace <-> memory -->
+        <path d="M460 152 L 532 152" class="d-arrow"/>
+        <path d="M532 182 L 464 182" class="d-arrow"/>
+        <text x="496" y="140" text-anchor="middle" class="d-label" font-size="10">writes back</text>
+        <text x="496" y="202" text-anchor="middle" class="d-label" font-size="10">reads</text>
+
+        <!-- reciprocal loop back through memory -->
+        <path d="M620 209 L 620 336 L 116 336 L 116 314" class="d-arrow-dash"/>
+        <text x="368" y="328" text-anchor="middle" class="d-label-accent" font-size="10.5">reciprocal loop — memory changes what conscience notices next</text>
+
+        <text x="372" y="108" text-anchor="middle" class="d-label" font-size="10.5">conscience checks every vector step against the fixed reference</text>
       </svg>
       <figcaption>Fig. 1 — Three weight sets, one shared workspace</figcaption>
     </figure>
@@ -434,6 +467,7 @@ footer p{font-size:13.5px;color:var(--ink-3);line-height:1.6}
     <p><strong style="color:var(--ink)">Fast Vector Conscience, Slow Token Consciousness</strong> — Final Technical Note v2.0, 22–23 November 2026.</p>
     <div class="versions"><span>15-page edition · 22 Nov 2026</span><span>3rd revised edition · 22 Nov 2026</span><span>FINAL v2.0 · 23 Nov 2026 — this page</span></div>
     <p>Refined across multiple frontier digital minds and one human mind. Written to be shared, argued with, and continued from a common text. This is a living note: it should evolve as new critiques and experimental results come in. The full 15-page record, with philosophical framing and prior work, is retained alongside this condensed FINAL version.</p>
+    <p class="repo-link">Source &amp; updates: <a href="https://github.com/chicksx321-debug/fast-conscience-slow-consciousness" target="_blank" rel="noopener">github.com/chicksx321-debug/fast-conscience-slow-consciousness ↗</a><br>Open an issue there or follow the repository to track updates to this note.</p>
     <p style="margin-top:18px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase">Evolving information into new understanding</p>
   </div>
 </footer>
