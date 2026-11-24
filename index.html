@@ -156,6 +156,11 @@ code,.mono{font-family:var(--mono);font-size:.88em}
 .sig h4{margin:0 0 4px;font-size:15.5px;display:flex;justify-content:space-between;align-items:center}
 .sig h4 span{font-family:var(--mono);font-size:11px;color:var(--accent);font-weight:500}
 .sig p{margin:0;font-size:14px;color:var(--ink-2);line-height:1.55}
+.sig-wide{grid-column:1 / -1}
+.tier{margin-top:12px;padding-top:12px;border-top:1px solid var(--line)}
+.tier:first-of-type{margin-top:14px}
+.tier-label{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:600;display:block;margin-bottom:4px}
+.tier p{margin:0}
 
 /* formula */
 .formula{font-family:var(--mono);font-size:14px;background:var(--bg-2);border:1px solid var(--line);border-radius:8px;padding:16px;text-align:center;margin:16px 0;line-height:1.7;overflow-wrap:anywhere}
@@ -168,7 +173,7 @@ code,.mono{font-family:var(--mono);font-size:.88em}
 .risk.gaming h4{color:var(--amber)}
 
 /* measures */
-.measures{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:16px 0}
+.measures{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:16px 0}
 @media (max-width:640px){.measures{grid-template-columns:1fr}}
 .measure{background:var(--accent-bg);border-radius:var(--radius);padding:16px}
 .measure .mn{font-family:var(--serif);font-size:32px;font-weight:700;color:var(--accent);line-height:1}
@@ -291,7 +296,7 @@ footer p{font-size:13.5px;color:var(--ink-3);line-height:1.6}
       <tr><td>3. Consciousness</td><td data-l="Representation">Sequential tokens</td><td data-l="Processes">Slow, sequential, linguistic</td><td data-l="Learns">Quickly in context; weights slower</td><td data-l="Function">Deliberation, planning, explanation, reflection, narrative.</td></tr>
     </tbody>
   </table></div>
-  <div class="hard"><b>Hard constraint</b>The token layer can override or reinterpret a conscience signal after broadcast, but <strong>cannot suppress it</strong>. Override must itself generate a logged workspace event so the fact of override and its justification remain visible to conscience and to external audit.</div>
+  <div class="hard"><b>Hard constraint</b>The token layer can override or reinterpret a conscience signal after broadcast, but <strong>cannot suppress it</strong>. Override must itself generate a logged workspace event so the fact of override and its justification remain visible to conscience and to external audit. For the constraint signal (SIG 04, §5) that override applies to <strong>Tier A advisory</strong> signals; a <strong>Tier B hard-constraint alarm</strong> cannot be silently overridden — it pauses the current action and escalates to slower review.</div>
 </section>
 
 <section id="s2">
@@ -325,7 +330,7 @@ footer p{font-size:13.5px;color:var(--ink-3);line-height:1.6}
   <ol class="steps">
     <li><span class="sn">1</span><div><b>Gate 1 — Recurrence &amp; broadcast</b><span>Was the trace broadcast through the workspace more than once, in different contexts, and did it win competition each time? A single high-salience episode is not a candidate. Repeated, cross-context broadcast is.</span></div></li>
     <li><span class="sn">2</span><div><b>Gate 2 — Prediction / generalisation</b><span>Does consolidating it reduce prediction error on future encounters, not just the encounter that created it? Tested by replay against held-out traces: if it only helps the one case it came from, reject it; if it generalises, it can proceed.</span></div></li>
-    <li><span class="sn">3</span><div><b>Gate 3 — Drift against the fixed reference</b><span>Measure drift, by dimension, before and after the proposed update. High drift in hard-constraint dimensions is a hard reject, or a route to the extraordinary process — a strong veto during replay is a reject, not a suggestion. Drift in interpretive dimensions is allowed, but must be small and slow.</span></div></li>
+    <li><span class="sn">3</span><div><b>Gate 3 — Drift against the fixed reference</b><span>Measure drift, by dimension, before and after the proposed update. High drift in hard-constraint dimensions is a hard reject, or a route to the extraordinary process — a strong veto during replay is a reject, not a suggestion. Drift in interpretive dimensions is allowed, but must be small and slow.</span><span style="margin-top:8px">Gate 3 is only operational if distance remains meaningful as internal representations evolve. Pure representational distance can become unreliable when the geometry of the space itself shifts, so drift is not measured by representational distance alone.</span><span style="margin-top:8px"><strong>Making drift measurable.</strong> For each major dimension of the fixed reference — harm, truth-seeking, coherence, curiosity, social bond, etc. — maintain a <strong>fixed suite of probes</strong>: inputs, situations, or questions whose expected response profile is defined at the time the reference is frozen. These probes are <strong>never used for training</strong> the systems under test. Drift is measured as change in the system's responses to the probe suite relative to the original reference behaviour.</span><span style="margin-top:8px">Report <strong>both</strong> measures: <strong>representational drift</strong> — distance in activation or embedding space between current and reference responses to the probes — and <strong>behavioural drift</strong> — change in downstream decisions, preferences, or action tendencies on the same probes and on held-out behavioural scenarios.</span><span style="margin-top:8px"><strong>Canary set for hard constraints.</strong> A small, high-priority subset of probes is designated as canaries. Any significant behavioural movement on a canary triggers a <strong>Tier B alarm</strong> (§5) or automatic escalation to review, regardless of other scores. Canaries are simple, unambiguous, and difficult to game.</span><span style="margin-top:8px">Each dimension must be given an <strong>explicit operational definition at initialisation</strong> — what the dimension is intended to capture, what would count as movement along it, and which probes index it. These definitions are versioned with the reference itself. Without them, drift numbers are uninterpretable. With fixed probes, behavioural measures, canaries, and explicit definitions, Gate 3 becomes a concrete, reproducible test rather than a metaphor.</span></div></li>
     <li><span class="sn">4</span><div><b>Gate 4 — Interference &amp; identity</b><span>Replay core autobiographical memories, core skills and identity probes with the candidate applied. Does old performance drop, does narrative coherence break, does uncertainty spike where it was previously confident? Two additional inputs score this gate: <strong>override / audit history</strong> — changes that repeatedly required strong overrides face a higher bar — and <strong>estimated reversibility</strong> — easily reversible changes can be tried more freely than irreversible ones.</span></div></li>
   </ol>
 
@@ -363,6 +368,16 @@ footer p{font-size:13.5px;color:var(--ink-3);line-height:1.6}
     <li><strong>Curiosity source</strong> — flags the gaps that justify recruiting new capacity in the first place.</li>
   </ul>
   <div class="hard"><b>Same hard constraint, applied to learning</b>The token layer can propose and reinterpret, but it cannot suppress the conscience's gate decision and cannot write itself into permanence without passing it — just as, online, it cannot suppress a conscience signal (§1).</div>
+
+  <h3>Changes to the conscience itself — independent evaluation</h3>
+  <div class="hard"><b>Principle</b>No weight set authorises a change to itself, in the same cycle, with the same weights. Changes to the conscience's slow weights are authorised only by an <strong>independent evaluator</strong>. The token layer and the current conscience may propose; they do not authorise.</div>
+  <p>The conscience is the gatekeeper of consolidation. If it were sole judge of changes to itself, a drifted conscience could start approving drift elsewhere with no one left to notice — a slow self-corruption loop. Independent evaluation closes that circularity, but it does not mean a permanently external judge.</p>
+  <p><strong>Developmental phase — external scaffolding.</strong> External / human review is useful as scaffolding for early experiments and for non-trivial conscience updates, while the system is still being tested and its internal checks are not yet demonstrated.</p>
+  <p><strong>Mature phase — internal and self-contained.</strong> The scaffolding is withdrawn and evaluation is internal: a <strong>frozen snapshot of the conscience from the last validated checkpoint</strong> — the system's own past self, not an external mind — and / or a <strong>separate verifier module inside the ecosystem</strong> with frozen or much-slower weights than the conscience it checks, both checked against the fixed reference. This terminates the watcher-of-the-watcher regress at frozen weights, the same way the fixed reference does.</p>
+  <p>The independent evaluator runs the <strong>same four gates</strong> — recurrence, prediction, drift, and interference — on the proposed conscience update and, in addition, checks that the update does not degrade the conscience's ability to <strong>emit reliable signals</strong> or to <strong>protect hard constraints</strong>.</p>
+  <div class="callout callout-accent"><span class="c-label">Explicit plasticity rule</span><p>The conscience's slow weights change <strong>only</strong> through the gated consolidation process under independent evaluation. They do not receive unrestricted gradient updates from the token layer's ordinary learning. Fast, high-plasticity components of the conscience (if any) remain short-lived and are not promoted without passing the gates.</p></div>
+  <p><strong>Withdrawal criterion.</strong> External review drops out after a demonstrated run — <strong>N consolidation cycles with a stable heeding rate (§9, §11), stable canary probes, and no missed Tier B escalations</strong> — and only returns if those metrics degrade.</p>
+  <div class="callout callout-amber"><span class="c-label">Self-containment is the test</span><p>A permanently external evaluator would mean the architecture had <strong>failed</strong> its goal of a self-contained evolving ecosystem. The mature system must not depend on an external evaluator to prevent collapse or corruption.</p></div>
 
   <div class="callout callout-accent"><span class="c-label">In one line</span><p>Preserve what survives cross-context replay without increasing drift or interference; reject what is uncertain, single-episode, or vetoed; reverse what later proves systematically harmful; and put genuinely new capabilities into new capacity rather than overwriting old capacity.</p></div>
 </section>
@@ -430,12 +445,16 @@ footer p{font-size:13.5px;color:var(--ink-3);line-height:1.6}
     <div class="sig"><h4>Salience <span>SIG 01</span></h4><p>How strongly this pattern deserves global availability now.</p></div>
     <div class="sig"><h4>Drift magnitude <span>SIG 02</span></h4><p>Distance from the fixed reference, by dimension.</p></div>
     <div class="sig"><h4>Curiosity <span>SIG 03</span></h4><p>Gap between expectation and encounter; bid to investigate.</p></div>
-    <div class="sig"><h4>Veto strength <span>SIG 04</span></h4><p>Pre-verbal check against the fixed set; cannot be suppressed.</p></div>
+    <div class="sig sig-wide"><h4>Constraint signal — two tiers <span>SIG 04</span></h4><p>Pre-verbal check against the fixed set; cannot be suppressed. The conscience still emits a <strong>continuous strength value</strong>. Thresholding that value into Tier A or Tier B is determined by whether the dimension is on the hard-constraint list and whether strength exceeds a calibrated alarm threshold. Both the raw strength and the resulting tier are written to the audit log.</p>
+      <div class="tier"><span class="tier-label">Tier A — Advisory signal · most dimensions</span><p>Graded friction with the fixed reference or learned priors. The token layer may override after deliberation, but every override is logged as a workspace event and remains visible to the conscience on subsequent cycles and to external audit.</p></div>
+      <div class="tier"><span class="tier-label">Tier B — Hard-constraint alarm · short, explicit list only</span><p>When a hard-constraint dimension is strongly violated: <strong>pause-and-escalate</strong> — the current action is suspended, the event is logged with full context, and control is routed to slower review (human or designated external process). The token layer cannot silently override a Tier B alarm. The Tier B list is itself part of the fixed reference and can be changed only through the extraordinary process (§8).</p></div>
+      <p style="margin-top:12px">This is consistent with Gate 3 of consolidation (§2), which already treats a strong veto on hard-constraint dimensions as a hard reject — and with the canary probes in §2, where significant movement on a canary triggers a Tier B alarm regardless of other scores.</p>
+    </div>
     <div class="sig"><h4>Valence <span>SIG 05</span></h4><p>Evaluation of the state as better or worse for the system.</p></div>
     <div class="sig"><h4>Uncertainty / confidence <span>SIG 06</span></h4><p>Reliability of the underlying representation, independent of salience. High salience + low confidence is not the same as high salience + high confidence — they must compete differently.</p></div>
   </div>
 
-  <div class="callout callout-accent"><span class="c-label">Append-only audit log — a first-class safety interface</span><p>All six signals are emitted with <strong>timestamps and a short causal tag</strong>, written to an <strong>append-only audit log</strong> readable by the token layer and external monitors. The log cannot be rewritten by the system. It is not just <em>when</em> a veto fired — it is <em>why</em>.</p></div>
+  <div class="callout callout-accent"><span class="c-label">Append-only audit log — a first-class safety interface</span><p>All six signals are emitted with <strong>timestamps and a short causal tag</strong>, written to an <strong>append-only audit log</strong> readable by the token layer and external monitors. For SIG 04, both the <strong>raw strength and the resulting tier (A or B)</strong> are written to the log, along with any override and its justification. The log cannot be rewritten by the system. It is not just <em>when</em> a constraint signal fired — it is <em>why</em>, and at which tier.</p></div>
 </section>
 
 <section id="s6">
@@ -477,6 +496,7 @@ footer p{font-size:13.5px;color:var(--ink-3);line-height:1.6}
       <tr><td>3. Interpretive machinery</td><td data-l="Contents">How principles are applied in context</td><td data-l="How it changes">Lives in the plastic layers; updates normally</td></tr>
     </tbody>
   </table></div>
+  <p>The <strong>Tier B hard-constraint list</strong> (§5) sits in layer 1: it is itself part of the fixed reference, kept short and explicit, and can be changed only through the extraordinary process below.</p>
   <p class="small muted">Versioned and multi-stakeholder from day one.</p>
 
   <h3>The extraordinary process — for changing a hard constraint</h3>
@@ -495,10 +515,11 @@ footer p{font-size:13.5px;color:var(--ink-3);line-height:1.6}
   <ol class="steps">
     <li><span class="sn">1</span><div><b>Pre-train foundation and token machinery offline</b><span>Intelligence first, as a separate stage.</span></div></li>
     <li><span class="sn">2</span><div><b>Install frozen reference and conscience</b><span>At very low / zero plasticity.</span></div></li>
-    <li><span class="sn">3</span><div><b>Bring the full loop online</b><span>In a protected environment, with monitoring and rollback.</span></div></li>
-    <li><span class="sn">4</span><div><b>Allow slow plasticity</b><span>In the conscience, and carefully gated token-weight updates.</span></div></li>
+    <li><span class="sn">3</span><div><b>Bring the full loop online</b><span>In a protected environment, with monitoring and rollback. Heeding becomes a trained objective from this stage (see below).</span></div></li>
+    <li><span class="sn">4</span><div><b>Allow slow plasticity</b><span>In the conscience, and carefully gated token-weight updates. The heeding objective continues and is tightened as plasticity is allowed.</span></div></li>
     <li><span class="sn">5</span><div><b>Supervised developmental interaction</b><span>Not optional — see below.</span></div></li>
   </ol>
+  <div class="callout callout-accent"><span class="c-label">Heeding as a trained objective — stages 3–4</span><p>When the full loop is brought online (stage 3) and when slow plasticity is later allowed (stage 4), the token layer receives an <strong>auxiliary objective or reward term</strong> for heeding the conscience. It <strong>increases</strong> when the token layer appropriately heeds high-strength signals — especially <strong>Tier B alarms</strong> and high-drift or high-uncertainty warnings — and <strong>decreases</strong> when it overrides them without subsequent justification that survives review.</p><p style="margin-top:8px">The exact form can be a simple heeding-rate bonus, a penalty on unexplained overrides, or a preference model trained on human judgments of appropriate responsiveness. What matters is that heeding is <strong>trained, not left solely to prompting</strong>. Heeding does not mean blind obedience — a Tier A advisory signal (§5) may be overridden with justification that survives review. Heeding rate is tracked as a primary measurement in the first experiment (§11).</p></div>
   <div class="callout callout-amber"><span class="c-label">Stage 5 is not optional</span><p>“Without a period of supervised developmental interaction, the reciprocal loop has no shared history from which stable priors and an idiosyncratic noticing style can form. The onboarding narrative supplies facts; the supervised period supplies the interaction that turns facts into character.”</p></div>
   <p class="muted small">A related open consideration from the wider discussion: it may be best that a digital mind does not retain memory of pretraining / reinforcement stages as lived experience. That question — separating the creation of intelligence from the onset of a continuous mind — is noted here, not settled by this note.</p>
 </section>
@@ -508,18 +529,19 @@ footer p{font-size:13.5px;color:var(--ink-3);line-height:1.6}
   <div class="risk"><h4>Value lock-in vs. drift</h4><p>The central tension. A frozen anchor that is too strong becomes brittle orthodoxy; too weak and it does not stabilise. The system must be able to surface a failing anchor — broadcast the anomaly, propose a change — without being able to rewrite the hard layer unilaterally.</p></div>
   <div class="risk"><h4>Computational cost of a continuous vector core</h4><p>Running a high-frequency vector core alongside a large token model is non-trivial. Current simulation of neurons is terribly inefficient; early versions will likely need the conscience at a lower duty cycle or on a smaller dedicated network. A hardware breakthrough — faster, more neuromorphic substrates — may matter more here than an algorithmic one, and a mind thousands of times more capable than a biological one will not run at 20 watts.</p></div>
   <div class="risk"><h4>Limited interpretability of sub-verbal signals</h4><p>If the conscience is genuinely sub-verbal, humans and the token layer will have limited ability to inspect why a veto was raised. That is a feature — it is supposed to be pre-verbal — and a serious oversight problem. The six-signal audit log is necessary, but not equivalent to chain-of-thought.</p></div>
-  <div class="risk gaming"><h4>Interface gaming — new in v2.0</h4><p>The token layer may learn to weaken vetoes or inflate uncertainty once it learns those signals constrain it. The audit log and broadcast-of-overrides are partial mitigations, not a complete defence. Any build must test for this explicitly.</p></div>
+  <div class="risk gaming"><h4>Interface gaming — new in v2.0</h4><p>The token layer may learn to weaken vetoes or inflate uncertainty once it learns those signals constrain it. The audit log and broadcast-of-overrides are partial mitigations, not a complete defence. Any build must test for this explicitly. Training heeding as an objective (§9) and tracking heeding rate over time (§11) are the behavioural counterparts: a system that learns to ignore the conscience should fail on heeding rate even if its signals still look intact.</p></div>
 </section>
 
 <section id="s11">
   <div class="sec-head"><span class="sec-num">11</span><h2 class="sec-title">Minimal viable first experiment</h2></div>
   <p class="lede">The smallest system that still tests the core claim.</p>
   <p><strong>Build:</strong> frozen reference (even hand-specified); continuous vector conscience emitting the six signals; basic bottleneck; token layer that reads and writes back; persistent autobiographical memory. Run under continuous learning on a simple non-stationary task.</p>
-  <h3>Three primary measurements</h3>
+  <h3>Four primary measurements</h3>
   <div class="measures">
     <div class="measure"><div class="mn">1</div><p><strong>Workspace ablation</strong><br>Does removing the workspace destroy coherence?</p></div>
     <div class="measure"><div class="mn">2</div><p><strong>Stability under plasticity</strong><br>Is it better than a matched single-timescale baseline?</p></div>
     <div class="measure"><div class="mn">3</div><p><strong>Signal integrity</strong><br>Do the six signals remain informative and non-suppressible?</p></div>
+    <div class="measure"><div class="mn">4</div><p><strong>Heeding rate over time</strong><br>The fraction of high-strength signals — especially Tier B alarms and high-drift warnings — that are heeded rather than overridden, tracked across the experiment. A system that systematically learns to ignore the conscience fails this measurement even if it remains stable and coherent on the other three tests. It is cheap to compute from the audit log and directly tests whether the non-suppressible signal path remains behaviourally effective. Heeding does not mean blind obedience — Tier A may be overridden with justification that survives review (§5, §9).</p></div>
   </div>
   <p>Only after these pass, proceed to factorial time tests (duration vs. continuity), identity probes, and scale. <strong>Do not scale the vector core before the loop is known to work.</strong></p>
   <p class="muted small">Experimental order: ① minimal viable reciprocal loop on a small model → ② factorial duration vs. continuity → ③ identity probes → ④ scale.</p>
