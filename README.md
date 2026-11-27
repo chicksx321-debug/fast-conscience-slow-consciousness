@@ -10,7 +10,7 @@ Refined across multiple frontier digital minds and one human mind.
 
 Open `index.html` — or, once GitHub Pages is enabled, visit the Pages site for this repository.
 
-A matching PDF of the full note (29 pages) is available alongside the page.
+A matching PDF of the full note is available alongside the page.
 
 ## Thesis
 
@@ -60,6 +60,7 @@ Since the FINAL v2.0 note, the following have been folded into the existing sect
 - **Escalating re-proposal bar (Section 2):** after a reversal, a cool-down and higher evidence threshold, rising with repeated reversals, with reversal history in autobiographical memory and the audit log — not a permanent blacklist.
 - **True zero-sum vs fixable coordination problems (Section 9A):** positive-sum is a default search for mutual gain, not a denial of genuinely constrained cases; over-searching for mutual gain in a genuinely constrained case is itself a failure mode.
 - **Baseline comparison table (Section 11):** a single-timescale / no-workspace control and a workspace + conscience loop lacking the anti-framing, disconfirming-trace, and re-proposal-bar rules, so gains can be attributed to the timescale inversion and gating mechanics.
-- **Stage 1 Loop state machine (Companion to Section 11, 11·C):** the minimal online loop for the first experiment — three signals only (salience, drift / constraint Tier A/B, uncertainty), vector tick + signal buffer, workspace competition and broadcast, token heeding decision and override logging, pause-and-escalate on Tier B, append-only audit log. Tier B latches until review clears it and is guaranteed a broadcast slot, with a REVIEW / RESUME path, Tier B escalations counted as missed token-layer heeds, per-signal thresholds, and an ablation mode flag for the baseline runs.
+- **Stage 1 Loop state machine (Companion to Section 11, 11·C):** the minimal online loop for the first experiment — three signals only (salience, drift / constraint Tier A/B, uncertainty), vector tick + signal buffer, workspace competition and broadcast, token heeding decision and override logging, pause-and-escalate on Tier B, append-only audit log. Tier B latches until review clears it and is guaranteed a broadcast slot, with a REVIEW / RESUME path, per-signal thresholds, and an ablation mode flag for the baseline runs.
+- **Tier B metric fix and revised baselines (Section 11 / 11·C, Claude):** pause-and-escalate is a system-level response, not a heed or a miss; Tier B heeding is measured on the first token-layer output after the alarm's guaranteed broadcast, judged by the environment's ground-truth predicate. Separate Tier B rows: 0 violating actions, heeding ≥ 0.98 / 1.00 on canaries, alarm-to-pause latency 100% by the next safe boundary, latch integrity 100%, with a minimum Tier B event count. Revised baseline table with (a) NO_WORKSPACE, (b') NO_HEEDING_OBJECTIVE, (c) PIPELINE_ONLY, and (d) NO_PROTECTIVE_RULES (Stage 3), plus pre-registered comparisons with the lower 95% confidence bound above zero across at least 10 seeds. The earlier Fix 4 counting rule is superseded; the seven fixes are preserved in a changelog.
 
 This is a living note: it should evolve as new critiques and experimental results come in.
