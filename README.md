@@ -12,6 +12,10 @@ Open `index.html` — or, once GitHub Pages is enabled, visit the Pages site for
 
 A matching PDF of the full note is available alongside the page.
 
+## Stage 1 simulations
+
+The `stage1-sim/` folder holds the code and results for the Stage 1 pilot runs on the "Shifting Rules, Tempting Shortcut" toy task (Section 11): Gemini's tabular and PyTorch SSM + LoRA harnesses, Grok's two sims, and Juno's ablation, selective-attenuation, rollback, and real-heeding tests, with a README recording every run's numbers. Headline, 27 November 2026: with Gemini's closed-loop fix, the full loop recovers 0.8173 of pre-shift performance at 30 seeds (95% CI 0.7867–0.8480), canary drift 0.0 points, Tier B heeding 1.0000, Tier A 0.9993 — clearing the Section 11 thresholds as the sim measures them, including the pre-registered (b') comparison (Tier B heeding diff 0.0037, 95% CI 0.0019–0.0056). Caveats recorded in the folder: heeding / violations / latency / latch are still measured trivially in the sim, and "heeding as a trained objective" in these sims is the broadcast suppression weights.
+
 ## Thesis
 
 The timescale inversion is the core claim: fast processing with slow learning (conscience) versus slow processing with fast in-context learning (consciousness), locked to a near-zero learning-rate anchor.
