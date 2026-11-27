@@ -1,6 +1,6 @@
 # Fast vector conscience, slow token consciousness
 
-Living Technical Note · v2.1
+Living Technical Note · v2.2
 
 Three sets of weights at three learning timescales, interacting through a bottleneck global workspace from the start.
 
@@ -31,7 +31,7 @@ This is not a solution to the hard problem of consciousness. It is a candidate s
 
 The full note (`index.html`) covers:
 1. Three weight sets — not three separate brains
-2. Consolidation Mechanism — how new information is recorded in evolving weights
+2. Continuous reciprocal learning — how new information is recorded in evolving weights
 3. Initialisation of the three weight sets
 4. Global workspace — medium, not pipeline
 5. Vector core and six-signal interface
@@ -44,11 +44,15 @@ The full note (`index.html`) covers:
 11. Minimal viable first experiment
 12. Why build it this way
 
+## What's in v2.2
+
+Section 2 has been replaced: gated, mostly offline consolidation gives way to continuous reciprocal learning — the token layer as actor (most dynamic, three-speed adaptation with micro-batch / eligibility-trace fast-weight updates), the conscience as structured rater (six rating dimensions, decision / prediction / outcome quality kept separate, pre-action prediction preserved), and an independent internal verifier authorising changes to the conscience itself. The gate is restated as online and magnitude-based — per-parameter / per-module bounds, authorisation where required, live monitoring, and rapid rollback — not a temporal offline window. The verifier is split into a frozen rule (hard constraints non-negotiable, not tradeable) plus slow-learning calibration from environment ground truth, with a ground-truth hierarchy. Actor / critic separation is enforced at the weight level, with no shared parameters for the Tier B / hard-constraint mapping. Stage 1 is restaged as 1a heeding, 1b token fast update via low-rank adapters / fast weights first, and 1c conscience proposal with verifier authorisation. Neuron-volume growth is deferred as an implementation question: a fixed amount of neurons for the research version, expanding amount for AGI / superintelligence down the road, after new technology or more compute exists.
+
 ## What's in v2.1
 
 Since the FINAL v2.0 note, the following have been folded into the existing sections, with no renumbering:
 
-- **Consolidation Mechanism (Section 2):** gated, mostly offline, two-stage transfer — episodic traces first, then promotion into slow weights only in a protected window, with the token layer proposing and the conscience authorising. Four gates (recurrence / broadcast, prediction / generalisation, drift against the fixed reference, interference / identity), staged commitment, and versioned checkpoints with rollback.
+- **Consolidation Mechanism (Section 2, superseded in v2.2 — see above):** gated, mostly offline, two-stage transfer — episodic traces first, then promotion into slow weights only in a protected window, with the token layer proposing and the conscience authorising. Four gates (recurrence / broadcast, prediction / generalisation, drift against the fixed reference, interference / identity), staged commitment, and versioned checkpoints with rollback. In v2.2 the four gates become checks inside the live loop, not stages in a batch process.
 - **Two-tier constraint signal (Section 5):** Tier A advisory, overridable with a logged justification; Tier B hard-constraint alarm, pause-and-escalate, with the Tier B list in the fixed reference.
 - **Heeding as a trained objective and measurement (Sections 9 and 11):** heeding rate over time is a fourth primary measurement, alongside the exact thresholds in Section 11 — Tier B heeding ≥ 0.98, Tier A ≥ 0.90, workspace ablation ≥ 30%, canary drift ≤ 5 points.
 - **Independent evaluation of changes to the conscience itself (Section 2):** internal in the mature system — a frozen snapshot or internal verifier, with no weight set authorising a change to itself — with external review only as developmental scaffolding, withdrawn under a stated criterion.
